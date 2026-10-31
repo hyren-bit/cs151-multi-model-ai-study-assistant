@@ -32,24 +32,18 @@ The team will use `main` for stable work, `dev` for integration, and individual 
 
 ## Challenges or blockers
 
-_To be completed by the team._
+Working on Github is not familiar for every members. Thus, the workfolw is still behind a bit.
 
 ## Next steps
 
-- Add all team members as repository collaborators.
 - Confirm team roles and communication expectations.
 - Review and approve the Git workflow.
-- Create Issues for the next planning tasks.
 - Agree on project requirements and the initial technical direction before implementation.
 
 ## Team contributions
 
-_To be completed with each member's actual contributions._
-
 | Team member | Contribution |
+|Hong Nhat Ngo|---|
 |---|---|
-| To be completed | To be completed |
+|---|---|
 
-## Notes
-
-Update this report with actual team decisions and contributions before submitting it. Do not report planned work as completed work.
