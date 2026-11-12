@@ -1,18 +1,33 @@
 package View;
 
 import javax.swing.*;
-import java.util.EventListener;
+import java.awt.event.ActionListener;
 
+/**
+ * This panel displays the user-input text box and a button for submitting new input.
+ */
 public class UserPromptPanel extends JPanel {
     private String userPrompt; // FIXME: placeholder
+    private final JButton askModelsButton;
 
+    /**
+     * The constructor for the UserPromptPanel.
+     */
     public UserPromptPanel() {
-        // TODO: create this class
+        askModelsButton = new JButton("Ask Models");
+        // put this guy on the panel
+        // TODO: create this panel
     } //UserPromptPanel()
 
-    public void attachUserPromptListener(EventListener e) {
-        // TODO: attach this listener to the corresponding button
-    }
+
+    /**
+     * Attaches the ActionListener that handles updated user-input to the corresponding button.
+     * @param a ActionListener that handles updated user-input
+     */
+    public void attachUserPromptListener(ActionListener a) {
+        askModelsButton.addActionListener(a);
+    } //askModelsButton()
+
 
     /**
      * Accessor method for the user prompt
