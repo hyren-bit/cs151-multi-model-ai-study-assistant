@@ -23,8 +23,8 @@ gui integration with controller
  * Updated: Nov 12, 2026
  */
 public class View extends JFrame {
-  final LLMResponsePanel responsePanel;
-  final UserPromptPanel promptPanel;
+  private final LLMResponsePanel responsePanel;
+  private final UserPromptPanel promptPanel;
   private final int WIDTH = 800;
   private final int HEIGHT = 600;
 

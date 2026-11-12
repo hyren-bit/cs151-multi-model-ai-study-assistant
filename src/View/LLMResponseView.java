@@ -9,6 +9,7 @@ import java.awt.*;
 public class LLMResponseView extends JPanel implements ModelObserver {
     private final String modelName;
     private JTextArea textArea;
+    private JLabel textLabel; // status + time
     private final int WIDTH;
     private final int HEIGHT;
 
@@ -24,10 +25,10 @@ public class LLMResponseView extends JPanel implements ModelObserver {
         this.WIDTH = w;
         this.HEIGHT = h;
 
-        // TODO: add model name display
-        // TODO: add border
         // TODO: add header (time in ms, and state)
-        int headerHeight = Math.max((int) (0.1 * HEIGHT), 20);
+        int headerHeight = 20;
+        JLabel textLabel = new JLabel("");
+        this.add(textLabel);
 
         JScrollBar scrollBox = new JScrollBar(JScrollBar.VERTICAL);
         JTextArea textArea = new JTextArea("");
@@ -35,6 +36,7 @@ public class LLMResponseView extends JPanel implements ModelObserver {
 
         scrollBox.add(textArea);
         scrollBox.setPreferredSize(new Dimension(WIDTH, HEIGHT - headerHeight));
+        this.add(scrollBox);
 
     }
 
