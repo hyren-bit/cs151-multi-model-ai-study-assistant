@@ -1,3 +1,7 @@
-public class UserPromptPanel extends JPanel (
+package View;
 
-) //UserPromptPanel
+import javax.swing.*;
+
+public class UserPromptPanel extends JPanel {
+
+} //UserPromptPanel

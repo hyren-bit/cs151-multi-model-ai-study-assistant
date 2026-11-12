@@ -1,3 +1,5 @@
+package View;
+
 /*
 TODO:
 Section Author: John Bechtold
@@ -8,12 +10,14 @@ view / observer implementation
 gui integration with controller
  */
 
+import javax.swing.*;
+
 /**
  * @author John Bechtold
  * @version 0.1
  * Updated: Nov 11, 2026
  */
-public class View extends JFrame{
+public class View extends JFrame {
   final LLMResponsePanel responsePanel;
   final UserPromptPanel promptPanel;
 
