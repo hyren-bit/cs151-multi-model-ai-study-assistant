@@ -1,4 +1,5 @@
 package View;
+
 import Shared.*;
 import javax.swing.*;
 import java.awt.*;
@@ -52,6 +53,11 @@ public class LLMResponseView extends JPanel implements ModelObserver {
 
         // update other info for this field
     }
+
+    @Override
+    public boolean hasName(String name) {
+        return name.equals(modelName);
+    } // hasName()
 
     public void attachModel() {
         // TODO: pass a reference to the model from view to here.

@@ -1,32 +1,35 @@
 package View;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import Shared.ModelObserver;
 
 /*
-TODO: This whole thing.
 Section Author: John Bechtold
-responsibility Java Swing GUI
-Question input and Ask Models
-3 response panels
-view / observer implementation
-gui integration with controller
- */
+responsibilities:
+  * Java Swing GUI
+  * Question input and Ask Models
+  * 3 response panels
+  * view / observer implementation
+  * gui integration with controller
+*/
 
 /**
- * The View component of the MVC pattern. This class is responsible for displaying the user-interface
- * as well as accepting user-input and notifying the controller via a listener when user-input updates.
+ * The View component of the MVC pattern.<br>
+ * This class is responsible for:<br>
+ *    * Displaying the user-interface<br>
+ *    * Accepting user-input and notifying the controller via a listener.<br>
+ *    * Updating the GUI when the model changes. (model notifies observers)<p>
  *
  *
  * @author John Bechtold
- * @version 0.2
+ * @version 0.2<br>
  * Updated: Nov 12, 2026
  */
 public class View extends JFrame {
   private final LLMResponsePanel responsePanel;
   private final UserPromptPanel promptPanel;
-  private final int WIDTH = 800;
-  private final int HEIGHT = 600;
 
 
   /**
@@ -36,39 +39,65 @@ public class View extends JFrame {
    * @param modelName3 The third model name.
    */
   public View(String modelName1, String modelName2, String modelName3) {
-    int responsePanelHeight = Math.max(100, (int) (0.8 * HEIGHT));
-    responsePanel = new LLMResponsePanel(modelName1, modelName2, modelName3, WIDTH, responsePanelHeight);
-    promptPanel = new UserPromptPanel();
+    // Initialize Frame settings.
+    final int WIDTH = 800;
+    final int HEIGHT = 600;
+    this.setTitle("Multi-Model AI Study Assistant");
+    this.setSize(WIDTH, HEIGHT);
+    this.setResizable(false);
+    this.setLocationRelativeTo(null);
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setLayout(new BorderLayout());
 
-    //TODO: build the view
-    // add all components to the frame.
-    // set size, repack, close settings etc..
+    // Calculate Panel heights.
+    //    promptPanel prefers 20% frame height, with a minimum of 50 and a maximum of 100.
+    //    the rest of the height of the frame is allocated to the responsePanel
+    final int MIN_PROMPTPANEL_HEIGHT = 50;
+    final int MAX_PROMPTPANEL_HEIGHT = 100;
+    final double PREF_PROMPTPANEL_PROPORTION = 0.2;
+
+    int promptPanelHeight = Math.max(MIN_PROMPTPANEL_HEIGHT, (int) (PREF_PROMPTPANEL_PROPORTION * HEIGHT));
+    promptPanelHeight = Math.min(promptPanelHeight, MAX_PROMPTPANEL_HEIGHT);
+
+    int responsePanelHeight = HEIGHT - promptPanelHeight;
+
+
+    // Add JComponents
+    promptPanel = new UserPromptPanel(WIDTH, promptPanelHeight);
+    this.add(promptPanel, BorderLayout.NORTH);
+
+    responsePanel = new LLMResponsePanel(modelName1, modelName2, modelName3, WIDTH, responsePanelHeight);
+    this.add(responsePanel, BorderLayout.CENTER);
+
+    // Pack and display the view.
+    this.pack();
+    this.setVisible(true);
   } //View()
 
 
   /**
+   *    TODO: **Controller** should pass this method an ActionListener.
    * This should be called by Controller.
    * @param a The listener for the user input button.
    */
   public void attachUserPromptListener(ActionListener a) {
-    // TODO: attach this listener to the corresponding button.
     promptPanel.attachUserPromptListener(a);
   } //attachUserPromptListener()
 
 
   /**
-   * TODO: This will need to take a reference to the model object.
+   *    TODO: **Controller** should pass this method a reference to the Model (or some object that can access LLM state and results for displaying).
    * The model reference will be required by the LLMResponseView objects in order to access the model accessors
    * Whenever the ModelObserver.modelChanged() method is called.
    */
-  public void attachModel() {
-    // TODO: pass the model down to the response panel.
-    responsePanel.attachModel();
+  public void attachModel(/* Model Reference Goes Here */) {
+    responsePanel.attachModel(/* Model Reference Goes Here */);
   } //attachModel()
 
 
   /**
-   * This should be called by the controller when the listener event triggers
+   * TODO: **Controller** should call this method when the ActionListener triggers to access the userPrompt.
+   * This is an accessor method to receive the user-prompt for the LLMs.
    * @return The user's prompt for the LLMs.
    */
   public String getUserPrompt() {
@@ -77,15 +106,8 @@ public class View extends JFrame {
 
 
   /**
-   * Resets the text fields in anticipation for a new set of responses from the LLMs
-   */
-  private void clearResponses() {
-
-  } //clearResponses()
-
-
-  /**
-   *
+   *  TODO: **Controller** should pass the output of this accessor method to the Model.
+   *  An accessor method to retrieve the ModelObservers responsible for displaying the state of the LLMs in the GUI.
    * @return Three ModelObserver objects to be updated in the Model
    */
   public ModelObserver[] getModelObservers() {

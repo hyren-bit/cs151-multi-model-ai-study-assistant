@@ -13,7 +13,7 @@ public class UserPromptPanel extends JPanel {
     /**
      * The constructor for the UserPromptPanel.
      */
-    public UserPromptPanel() {
+    public UserPromptPanel(int w, int h) {
         askModelsButton = new JButton("Ask Models");
         // put this guy on the panel
         // TODO: create this panel
