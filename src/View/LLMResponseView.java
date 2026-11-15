@@ -9,10 +9,8 @@ import java.awt.*;
  */
 public class LLMResponseView extends JPanel implements ModelObserver {
     private final String modelName;
-    private JTextArea textArea;
-    private JLabel textLabel; // status + time
-    private final int WIDTH;
-    private final int HEIGHT;
+    private final JTextArea responseText;
+    private final JLabel header; // status + time
 
 
     /**
@@ -23,43 +21,54 @@ public class LLMResponseView extends JPanel implements ModelObserver {
      */
     public LLMResponseView(String modelName, int w, int h) {
         this.modelName = modelName;
-        this.WIDTH = w;
-        this.HEIGHT = h;
 
-        // TODO: add header (time in ms, and state)
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.NONE;
+        c.anchor = GridBagConstraints.WEST;
+
         int headerHeight = 20;
-        JLabel textLabel = new JLabel("");
-        this.add(textLabel);
+        c.gridy = 0;
+        c.gridx = 0;
+        header = new JLabel("");
+        header.setPreferredSize(new Dimension(w, headerHeight));
+        this.add(header, c);
 
+        c.gridy = 1;
         JScrollBar scrollBox = new JScrollBar(JScrollBar.VERTICAL);
-        JTextArea textArea = new JTextArea("");
-        textArea.setEditable(false);
+        responseText = new JTextArea("");
+        responseText.setEditable(false);
 
-        scrollBox.add(textArea);
-        scrollBox.setPreferredSize(new Dimension(WIDTH, HEIGHT - headerHeight));
+        scrollBox.add(responseText, c);
+        scrollBox.setPreferredSize(new Dimension(w, h - headerHeight));
         this.add(scrollBox);
 
-    }
+    } // LLMResponseView()
 
     @Override
     public void modelChanged() {
         //String modelName, ResponseState responseState, String modelOutput, int latency) {
         // read the current response for the modelName from the shared model and refresh this view
         // Requires enum (response state enum), int (response time in ms), String (the model output)
+        // TODO: implement this method. Needs model accessors.
 
+
+        // Update header
+        // Status text format 'STATUS - t ms'
         String newText = "";
+        header.setText(newText);
 
-        textArea.setText(newText);
-
-        // update other info for this field
-    }
+        // Update the LLM response text field
+        newText = "";
+        responseText.setText(newText);
+    } // modelChanged()
 
     @Override
     public boolean hasName(String name) {
         return name.equals(modelName);
     } // hasName()
 
-    public void attachModel() {
+    public void attachModel(/* model reference */) {
         // TODO: pass a reference to the model from view to here.
-    }
-}
+    } // attachMode()
+} // LLMResponseView
