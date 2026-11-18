@@ -1,8 +1,8 @@
-package Strategy;
+package studyassistant.strategy;
 
-import Client.OllamaClient;
+import studyassistant.client.OllamaClient;
 
-/** Strategy for the llama3.2:1b Ollama model. */
+/** Concrete Strategy that asks the llama3.2:1b model through OllamaClient. */
 public class LlamaStrategy extends OllamaStrategy {
 
     private static final String MODEL_NAME = "llama3.2:1b";
