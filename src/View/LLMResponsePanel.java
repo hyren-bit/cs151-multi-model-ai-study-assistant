@@ -8,11 +8,9 @@ import java.awt.*;
  * The LLMResponsePanel will display a representation of the output of all three LLMs
  */
 public class LLMResponsePanel extends JPanel {
-    private LLMResponseView model1;
-    private LLMResponseView model2;
-    private LLMResponseView model3;
-    private final int HEIGHT;
-    private final int WIDTH;
+    private final LLMResponseView model1;
+    private final LLMResponseView model2;
+    private final LLMResponseView model3;
 
 
     /**
@@ -24,13 +22,11 @@ public class LLMResponsePanel extends JPanel {
      * @param h The height of the response panel.
      */
     LLMResponsePanel(String modelName1, String modelName2, String modelName3, int w, int h) {
-        WIDTH = w;
-        HEIGHT = h;
 
         // Create the LLMResponseViews, initializing their names and dimensions.
-        model1 = new LLMResponseView(modelName1, (int) (WIDTH / 3), HEIGHT);
-        model2 = new LLMResponseView(modelName2, (int) (WIDTH / 3), HEIGHT);
-        model3 = new LLMResponseView(modelName3, (int) (WIDTH / 3), HEIGHT);
+        model1 = new LLMResponseView(modelName1, (int) (w / 3), h);
+        model2 = new LLMResponseView(modelName2, (int) (w / 3), h);
+        model3 = new LLMResponseView(modelName3, (int) (w / 3), h);
 
         this.setLayout(new BorderLayout());
 
@@ -51,7 +47,7 @@ public class LLMResponsePanel extends JPanel {
     /**
      *
      */
-    public void attachModel() {
+    public void attachModel(/* accept model reference */) {
         // TODO: pass model from view to these guys
         model1.attachModel();
         model2.attachModel();
