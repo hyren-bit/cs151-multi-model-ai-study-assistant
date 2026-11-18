@@ -1,8 +1,8 @@
-package Strategy;
+package studyassistant.strategy;
 
-import Client.OllamaClient;
+import studyassistant.client.OllamaClient;
 
-/** Strategy for the gemma3:1b Ollama model. */
+/** Concrete Strategy that asks the gemma3:1b model through OllamaClient. */
 public class GemmaStrategy extends OllamaStrategy {
 
     private static final String MODEL_NAME = "gemma3:1b";

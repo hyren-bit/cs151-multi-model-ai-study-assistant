@@ -1,8 +1,8 @@
-package Strategy;
+package studyassistant.strategy;
 
-import Client.OllamaClient;
+import studyassistant.client.OllamaClient;
 
-/** Strategy for the qwen3:1.7b Ollama model. */
+/** Concrete Strategy that asks the qwen3:1.7b model through OllamaClient. */
 public class QwenStrategy extends OllamaStrategy {
 
     private static final String MODEL_NAME = "qwen3:1.7b";
