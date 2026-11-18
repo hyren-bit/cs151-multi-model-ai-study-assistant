@@ -28,6 +28,20 @@ public class LLMResponse {
         }
     }
 
+    public static LLMResponse success(String modelName, String text, long responseTimeMs) {
+        if (text == null || text.trim().equals("")) {
+            return new LLMResponse(modelName, "Invalid response.", ResponseState.INVALID_RESPONSE, responseTimeMs, "Empty response");
+        }
+        return new LLMResponse(modelName, text, ResponseState.SUCCESS, responseTimeMs, "");
+    }
+
+    public static LLMResponse failure(String modelName, String errorMessage, long responseTimeMs) {
+        if (errorMessage != null && errorMessage.contains("Timeout")) {
+            return new LLMResponse(modelName, "Request timed out.", ResponseState.TIMEOUT, responseTimeMs, errorMessage);
+        }
+        return new LLMResponse(modelName, "Error: " + errorMessage, ResponseState.FAILED, responseTimeMs, errorMessage);
+    }
+
     public String getModelName() { 
         return modelName; 
     }
