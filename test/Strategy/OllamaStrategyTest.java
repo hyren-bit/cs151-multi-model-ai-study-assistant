@@ -1,4 +1,4 @@
-package studyassistant.strategy;
+package Strategy;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,8 +14,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import studyassistant.client.OllamaClient;
-import studyassistant.model.LLMResponse;
+import Client.OllamaClient;
+import Model.LLMResponse;
 
 /**
  * Tests the three concrete strategies against a fake Ollama server

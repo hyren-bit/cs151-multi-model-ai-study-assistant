@@ -1,7 +1,7 @@
-package studyassistant.strategy;
+package Strategy;
 
 import java.util.concurrent.CompletableFuture;
-import studyassistant.model.LLMResponse;
+import Model.LLMResponse;
 
 /**
  * Strategy interface: the common operation shared by all LLM strategies.

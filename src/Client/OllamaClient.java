@@ -1,4 +1,4 @@
-package studyassistant.client;
+package Client;
 
 import java.net.URI;
 import java.net.http.HttpClient;

@@ -1,11 +1,11 @@
-package studyassistant.strategy;
+package Strategy;
 
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 
-import studyassistant.client.OllamaClient;
-import studyassistant.model.LLMResponse;
+import Client.OllamaClient;
+import Model.LLMResponse;
 
 /**
  * Shared behavior of the concrete strategies: delegate HTTP communication
