@@ -58,10 +58,6 @@ public class LLMResponse {
         return responseTimeMs; 
     }
 
-    public long getElapsedMillis() {            // getter allias for Strategy
-    return getResponseTimeMs();
-    }
-
     public String getErrorMessage() { 
         return errorMessage; 
     }
