@@ -9,8 +9,11 @@ import java.awt.*;
  * The LLMResponsePanel will display a representation of the output of all three LLMs
  */
 public class LLMResponsePanel extends JPanel {
+    /// The first LLM view panel
     private final LLMResponseView model1;
+    /// The second LLM view panel
     private final LLMResponseView model2;
+    /// The third LLM view panel
     private final LLMResponseView model3;
 
 
@@ -25,7 +28,7 @@ public class LLMResponsePanel extends JPanel {
     LLMResponsePanel(String modelName1, String modelName2, String modelName3, int w, int h) {
 
         // Create the LLMResponseViews, initializing their names and dimensions.
-        int modelWidth = (int) (w / 3);
+        int modelWidth = w / 3;
         model1 = new LLMResponseView(modelName1, modelWidth, h);
         model2 = new LLMResponseView(modelName2, modelWidth, h);
         model3 = new LLMResponseView(modelName3, modelWidth, h);
@@ -47,7 +50,7 @@ public class LLMResponsePanel extends JPanel {
 
 
     /**
-     *
+     * Attaches the Model governing all the LLMs to each of the responseViews
      */
     public void attachModel(Model model) {
         model1.attachModel(model);
@@ -57,7 +60,7 @@ public class LLMResponsePanel extends JPanel {
 
 
     /**
-     *
+     * This is an accessor method that returns references to all the ModelObservers, which can be updated when their corresponding LLMs are updated.
      * @return Returns the set of observers to be notified when the models change. (All three should be notified whenever a model updates.)
      */
     public ModelObserver[] getObservers() {
