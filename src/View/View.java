@@ -3,6 +3,8 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+
+import Model.Model;
 import Shared.ModelObserver;
 
 /*
@@ -28,7 +30,9 @@ responsibilities:
  * Updated: Nov 12, 2026
  */
 public class View extends JFrame {
+  /// the panel that will display the responses from the LLMs.
   private final LLMResponsePanel responsePanel;
+  /// The panel that will display the user-input.
   private final UserPromptPanel promptPanel;
 
 
@@ -76,7 +80,6 @@ public class View extends JFrame {
 
 
   /**
-   *    TODO: **Controller** should pass this method an ActionListener.
    * This should be called by Controller.
    * @param a The listener for the user input button.
    */
@@ -86,17 +89,15 @@ public class View extends JFrame {
 
 
   /**
-   *    TODO: **Controller** should pass this method a reference to the Model (or some object that can access LLM state and results for displaying).
    * The model reference will be required by the LLMResponseView objects in order to access the model accessors
    * Whenever the ModelObserver.modelChanged() method is called.
    */
-  public void attachModel(/* Model Reference Goes Here */) {
-    responsePanel.attachModel(/* Model Reference Goes Here */);
+  public void attachModel(Model model) {
+    responsePanel.attachModel(model);
   } //attachModel()
 
 
   /**
-   * TODO: **Controller** should call this method when the ActionListener triggers to access the userPrompt.
    * This is an accessor method to receive the user-prompt for the LLMs.
    * @return The user's prompt for the LLMs.
    */
@@ -106,7 +107,6 @@ public class View extends JFrame {
 
 
   /**
-   *  TODO: **Controller** should pass the output of this accessor method to the Model.
    *  An accessor method to retrieve the ModelObservers responsible for displaying the state of the LLMs in the GUI.
    * @return Three ModelObserver objects to be updated in the Model
    */

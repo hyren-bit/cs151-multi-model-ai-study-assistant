@@ -15,7 +15,8 @@ public class Model {
     public Model() {
         question = "";
         observers = new ArrayList<ModelObserver>();
-
+        // TODO: we should be careful about hard-coding the model names outside of the driver.
+        //  This program should function correctly if we use three different strategies/LLMs
         llamaResponse = new LLMResponse("Llama", "Waiting", ResponseState.WAITING, 0, "");
         gemmaResponse = new LLMResponse("Gemma", "Waiting", ResponseState.WAITING, 0, "");
         qwenResponse = new LLMResponse("Qwen", "Waiting", ResponseState.WAITING, 0, "");

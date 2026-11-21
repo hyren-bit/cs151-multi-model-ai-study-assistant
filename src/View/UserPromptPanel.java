@@ -8,7 +8,9 @@ import java.awt.event.ActionListener;
  * This panel displays the user-input text box and a button for submitting new input.
  */
 public class UserPromptPanel extends JPanel {
+    /// The user-input to be forwarded to the Model and presented to the LLMs
     private final JTextField userPrompt;
+    /// The button that triggers the submission of the user-input to the LLMs.
     private final JButton askModelsButton;
 
     /**
@@ -18,7 +20,8 @@ public class UserPromptPanel extends JPanel {
         this.setPreferredSize(new Dimension(w, h));
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.NONE;
+        c.weightx = 1.0;
+        c.fill = GridBagConstraints.BOTH;
         c.gridwidth = 9;
         c.anchor = GridBagConstraints.WEST;
 
@@ -30,6 +33,8 @@ public class UserPromptPanel extends JPanel {
         userPrompt = new JTextField("");
         this.add(userPrompt, c);
 
+        c.fill = GridBagConstraints.VERTICAL;
+        c.anchor = GridBagConstraints.SOUTHEAST;
         c.gridy = 2;
         c.gridx = 8;
         askModelsButton = new JButton("Ask Models");

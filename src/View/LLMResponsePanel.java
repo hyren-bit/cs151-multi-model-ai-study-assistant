@@ -1,5 +1,6 @@
 package View;
 
+import Model.Model;
 import Shared.ModelObserver;
 import javax.swing.*;
 import java.awt.*;
@@ -24,21 +25,22 @@ public class LLMResponsePanel extends JPanel {
     LLMResponsePanel(String modelName1, String modelName2, String modelName3, int w, int h) {
 
         // Create the LLMResponseViews, initializing their names and dimensions.
-        model1 = new LLMResponseView(modelName1, (int) (w / 3), h);
-        model2 = new LLMResponseView(modelName2, (int) (w / 3), h);
-        model3 = new LLMResponseView(modelName3, (int) (w / 3), h);
+        int modelWidth = (int) (w / 3);
+        model1 = new LLMResponseView(modelName1, modelWidth, h);
+        model2 = new LLMResponseView(modelName2, modelWidth, h);
+        model3 = new LLMResponseView(modelName3, modelWidth, h);
 
         this.setLayout(new BorderLayout());
 
-        model1.setPreferredSize(new Dimension(100,400));
+        model1.setPreferredSize(new Dimension(modelWidth,h));
         model1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), modelName1));
         this.add(model1, BorderLayout.WEST);
 
-        model2.setPreferredSize(new Dimension(100,400));
+        model2.setPreferredSize(new Dimension(modelWidth,h));
         model2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), modelName2));
         this.add(model2, BorderLayout.CENTER);
 
-        model3.setPreferredSize(new Dimension(100,400));
+        model3.setPreferredSize(new Dimension(modelWidth,h));
         model3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), modelName3));
         this.add(model3, BorderLayout.EAST);
     } //LLMResponsePanel()
@@ -47,11 +49,10 @@ public class LLMResponsePanel extends JPanel {
     /**
      *
      */
-    public void attachModel(/* accept model reference */) {
-        // TODO: pass model from view to these guys
-        model1.attachModel();
-        model2.attachModel();
-        model3.attachModel();
+    public void attachModel(Model model) {
+        model1.attachModel(model);
+        model2.attachModel(model);
+        model3.attachModel(model);
     } //attachModel()
 
 

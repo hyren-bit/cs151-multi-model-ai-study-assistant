@@ -1,16 +1,23 @@
 package View;
 
+import Model.Model;
+import Model.LLMResponse;
 import Shared.*;
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Displays a single response from an LLM.
+ * Displays the responses from one of the LLMs.
  */
 public class LLMResponseView extends JPanel implements ModelObserver {
+    /// The canonical name of the LLM this Panel is observing.
     private final String modelName;
+    /// The response from the LLM.
     private final JTextArea responseText;
-    private final JLabel header; // status + time
+    /// The header for the response (the current status of the LLM + response time)
+    private final JLabel header;
+    /// A reference to the Model governing all the LLMs
+    private Model model;
 
 
     /**
@@ -21,45 +28,49 @@ public class LLMResponseView extends JPanel implements ModelObserver {
      */
     public LLMResponseView(String modelName, int w, int h) {
         this.modelName = modelName;
+        this.model = null;
 
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.NONE;
+        c.fill = GridBagConstraints.BOTH;
         c.anchor = GridBagConstraints.WEST;
+        c.weightx = 1.0;
 
-        int headerHeight = 20;
+        // place the header at the top of the response view (eg. "Success - 100ms")
+        int headerHeight = 10;
         c.gridy = 0;
         c.gridx = 0;
-        header = new JLabel("");
+        header = new JLabel(ResponseState.WAITING.toString());
         header.setPreferredSize(new Dimension(w, headerHeight));
         this.add(header, c);
 
+        // place the response text under the header.
         c.gridy = 1;
-        JScrollBar scrollBox = new JScrollBar(JScrollBar.VERTICAL);
+        c.weighty = 1.0;
         responseText = new JTextArea("");
         responseText.setEditable(false);
 
-        scrollBox.add(responseText, c);
+        // put the response text in a scrollPane decorator class
+        JScrollPane scrollBox = new JScrollPane(responseText);
         scrollBox.setPreferredSize(new Dimension(w, h - headerHeight));
-        this.add(scrollBox);
+        this.add(scrollBox, c);
 
     } // LLMResponseView()
 
     @Override
     public void modelChanged() {
-        //String modelName, ResponseState responseState, String modelOutput, int latency) {
-        // read the current response for the modelName from the shared model and refresh this view
-        // Requires enum (response state enum), int (response time in ms), String (the model output)
-        // TODO: implement this method. Needs model accessors.
+        // get the response from Model
+        LLMResponse modelStatus = model.getLLMResponse(modelName);
 
-
-        // Update header
-        // Status text format 'STATUS - t ms'
-        String newText = "";
+        // update the header with the current status
+        String newText = modelStatus.getStatus().toString();
+        if (modelStatus.getStatus() == ResponseState.SUCCESS) {
+            newText += " - " + modelStatus.getResponseTimeMs() + "ms";
+        }
         header.setText(newText);
 
         // Update the LLM response text field
-        newText = "";
+        newText = modelStatus.getText();
         responseText.setText(newText);
     } // modelChanged()
 
@@ -68,7 +79,11 @@ public class LLMResponseView extends JPanel implements ModelObserver {
         return name.equals(modelName);
     } // hasName()
 
-    public void attachModel(/* model reference */) {
-        // TODO: pass a reference to the model from view to here.
+    /**
+     * Attaches the Model to this Panel
+     * @param model The Model class governing all the LLM responses.
+     */
+    public void attachModel(Model model) {
+        this.model = model;
     } // attachMode()
 } // LLMResponseView

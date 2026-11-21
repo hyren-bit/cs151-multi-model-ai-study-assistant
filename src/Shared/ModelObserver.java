@@ -1,8 +1,6 @@
 package Shared;
 
 /**
- * TODO: Model will use objects of this class.
- *      When there is any change in the state of any of the models, the corresponding model's modelChanged() method should be called.
  * This interface should be imported into Model and Controller, so View can pass an Observer from Controller into Model.
  */
 public interface ModelObserver {
