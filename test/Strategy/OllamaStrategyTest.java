@@ -110,7 +110,7 @@ class OllamaStrategyTest {
     @Test
     void elapsedTimeIsRecorded() throws Exception {
         LLMResponse r = await(new LlamaStrategy(CLIENT).generate("Hi"));
-        assertTrue(r.getElapsedMillis() >= 0);
+        assertTrue(r.getResponseTimeMs() >= 0);
     }
 
     @Test
