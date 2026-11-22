@@ -5,13 +5,20 @@ package Shared;
  * Will be passed to the observers for displaying the model status.
  */
 public enum ResponseState {
+    /// The state corresponding to the LLM waiting for input.
     WAITING("Waiting"),
-    RUNNING("Running"),
+    /// The state corresponding to the LLM processing a query.
+    RUNNING("Running..."),
+    /// The state corresponding to the LLM successfully creating a response.
     SUCCESS("Success"),
+    /// The state corresponding to the LLM failing to generate a response.
     FAILED("Failed"),
+    /// The state corresponding to a failure due to excessive latency, or network error.
     TIMEOUT("Timeout"),
+    /// The state corresponding to an invalid response from the LLM.
     INVALID_RESPONSE("Invalid Response");
 
+    /// The name of the state.
     private String name;
 
     private ResponseState(String name) {
