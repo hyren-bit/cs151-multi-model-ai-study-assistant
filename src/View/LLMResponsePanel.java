@@ -46,7 +46,7 @@ public class LLMResponsePanel extends JPanel {
         model3.setPreferredSize(new Dimension(modelWidth,h));
         model3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), modelName3));
         this.add(model3, BorderLayout.EAST);
-    } //LLMResponsePanel()
+    } // LLMResponsePanel()
 
 
     /**
@@ -56,7 +56,7 @@ public class LLMResponsePanel extends JPanel {
         model1.attachModel(model);
         model2.attachModel(model);
         model3.attachModel(model);
-    } //attachModel()
+    } // attachModel()
 
 
     /**
@@ -65,5 +65,5 @@ public class LLMResponsePanel extends JPanel {
      */
     public ModelObserver[] getObservers() {
         return new ModelObserver[] {model1, model2, model3};
-    }
-} //LLMResponsePanel
+    } // getObservers()
+} // LLMResponsePanel
