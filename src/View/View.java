@@ -43,9 +43,21 @@ public class View extends JFrame {
    * @param modelName3 The third model name.
    */
   public View(String modelName1, String modelName2, String modelName3) {
+    // input validation
+    if (modelName1 ==  null ||  modelName1.isBlank()) {
+      modelName1 = "DEFAULT_MODEL_1_NAME";
+    }
+    if (modelName2 == null || modelName2.isBlank() || modelName2.equals(modelName1)) {
+      modelName2 = "DEFAULT_MODEL_2_NAME";
+    }
+    if (modelName3 == null || modelName3.isBlank() || modelName3.equals(modelName1) || modelName3.equals(modelName2)) {
+      modelName3 = "DEFAULT_MODEL_3_NAME";
+    }
+
+
     // Initialize Frame settings.
-    final int WIDTH = 800;
-    final int HEIGHT = 600;
+    final int WIDTH = 800; // adjust this to resize the entire frame
+    final int HEIGHT = 600; // adjust this to resize the entire frame
     this.setTitle("Multi-Model AI Study Assistant");
     this.setSize(WIDTH, HEIGHT);
     this.setResizable(false);
@@ -76,16 +88,16 @@ public class View extends JFrame {
     // Pack and display the view.
     this.pack();
     this.setVisible(true);
-  } //View()
+  } // View()
 
 
   /**
    * This should be called by Controller.
-   * @param a The listener for the user input button.
+   * @param a The listener for the user input button. (can be null)
    */
   public void attachUserPromptListener(ActionListener a) {
     promptPanel.attachUserPromptListener(a);
-  } //attachUserPromptListener()
+  } // attachUserPromptListener()
 
 
   /**
@@ -94,7 +106,7 @@ public class View extends JFrame {
    */
   public void attachModel(Model model) {
     responsePanel.attachModel(model);
-  } //attachModel()
+  } // attachModel()
 
 
   /**
@@ -103,7 +115,7 @@ public class View extends JFrame {
    */
   public String getUserPrompt() {
     return promptPanel.getPrompt();
-  } //getUserPrompt()
+  } // getUserPrompt()
 
 
   /**
@@ -112,5 +124,5 @@ public class View extends JFrame {
    */
   public ModelObserver[] getModelObservers() {
     return responsePanel.getObservers();
-  } //getModelObservers()
-} //MainView
+  } // getModelObservers()
+} // MainView

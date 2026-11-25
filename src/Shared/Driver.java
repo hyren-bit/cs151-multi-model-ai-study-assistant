@@ -29,5 +29,5 @@ public class Driver {
         View view = new View(modelName1, modelName2, modelName3);
         Model model = new Model();
         Controller controller = new Controller(model, view, strategies);
-    } //main()
-} //Driver
+    } // main()
+} // Driver

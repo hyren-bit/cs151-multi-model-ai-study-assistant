@@ -60,6 +60,9 @@ public class LLMResponseView extends JPanel implements ModelObserver {
     @Override
     public void modelChanged() {
         // get the response from Model
+        if (model == null) {
+            return;
+        }
         LLMResponse modelStatus = model.getLLMResponse(modelName);
 
         // update the header with the current status
@@ -76,6 +79,9 @@ public class LLMResponseView extends JPanel implements ModelObserver {
 
     @Override
     public boolean hasName(String name) {
+        if (name == null) {
+            return false;
+        }
         return name.equals(modelName);
     } // hasName()
 

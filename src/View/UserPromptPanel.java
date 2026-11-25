@@ -39,17 +39,17 @@ public class UserPromptPanel extends JPanel {
         c.gridx = 8;
         askModelsButton = new JButton("Ask Models");
         this.add(askModelsButton, c);
-    } //UserPromptPanel()
+    } // UserPromptPanel()
 
 
     /**
      * Attaches the ActionListener that handles updated user-input to the corresponding button.
-     * @param a ActionListener that handles updated user-input
+     * @param a ActionListener that handles updated user-input (can be null)
      */
     public void attachUserPromptListener(ActionListener a) {
         askModelsButton.addActionListener(a); // listens for the ask button press
         userPrompt.addActionListener(a); // listens for enter key press
-    } //askModelsButton()
+    } // askModelsButton()
 
 
     /**
@@ -58,5 +58,5 @@ public class UserPromptPanel extends JPanel {
      */
     public String getPrompt() {
         return userPrompt.getText();
-    } //getPrompt()
-} //UserPromptPanel
+    } // getPrompt()
+} // UserPromptPanel
