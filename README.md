@@ -27,7 +27,6 @@ The team is currently in the setup and planning phase. Week 1 focuses on establi
 - Review and test changes before merging.
 - Merge `dev` into `main` when the team considers the work stable.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution process.
 
 ## Documentation
 
